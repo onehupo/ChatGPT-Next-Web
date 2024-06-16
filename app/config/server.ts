@@ -37,6 +37,10 @@ declare global {
 
       // custom template for preprocessing user input
       DEFAULT_INPUT_TEMPLATE?: string;
+
+      // local only
+      // this for use local api server
+      LOCAL_URL?: string;
     }
   }
 }

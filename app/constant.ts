@@ -14,6 +14,8 @@ export const ANTHROPIC_BASE_URL = "https://api.anthropic.com";
 
 export const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/";
 
+export const DEFAULT_LOCAL_URL = "http://localhost:8011";
+
 export enum Path {
   Home = "/",
   Chat = "/chat",
@@ -70,12 +72,14 @@ export enum ServiceProvider {
   Azure = "Azure",
   Google = "Google",
   Anthropic = "Anthropic",
+  Local = "Local",
 }
 
 export enum ModelProvider {
   GPT = "GPT",
   GeminiPro = "GeminiPro",
   Claude = "Claude",
+  LOCAL = "LOCAL",
 }
 
 export const Anthropic = {
@@ -99,6 +103,10 @@ export const Azure = {
 export const Google = {
   ExampleEndpoint: "https://generativelanguage.googleapis.com/",
   ChatPath: (modelName: string) => `v1beta/models/${modelName}:generateContent`,
+};
+
+export const Local = {
+  ExampleEndpoint: "http://localhost:8011/api/openai/v1/chat/completions",
 };
 
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
@@ -168,6 +176,8 @@ const anthropicModels = [
   "claude-3-haiku-20240307",
 ];
 
+const localModels = ["local"];
+
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
     name,
@@ -194,6 +204,15 @@ export const DEFAULT_MODELS = [
       id: "anthropic",
       providerName: "Anthropic",
       providerType: "anthropic",
+    },
+  })),
+  ...localModels.map((name) => ({
+    name,
+    available: true,
+    provider: {
+      id: "local",
+      providerName: "Local",
+      providerType: "local",
     },
   })),
 ] as const;

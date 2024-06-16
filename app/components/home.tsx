@@ -176,6 +176,8 @@ export function useLoadData() {
     api = new ClientApi(ModelProvider.GeminiPro);
   } else if (identifyDefaultClaudeModel(config.modelConfig.model)) {
     api = new ClientApi(ModelProvider.Claude);
+  } else if (config.modelConfig.model === "local") {
+    api = new ClientApi(ModelProvider.LOCAL);
   } else {
     api = new ClientApi(ModelProvider.GPT);
   }

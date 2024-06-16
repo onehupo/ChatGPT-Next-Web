@@ -9,6 +9,8 @@ import { ChatMessage, ModelType, useAccessStore, useChatStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
 import { GeminiProApi } from "./platforms/google";
 import { ClaudeApi } from "./platforms/anthropic";
+import { LocalApi } from "./platforms/local";
+
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
 
@@ -101,6 +103,9 @@ export class ClientApi {
         break;
       case ModelProvider.Claude:
         this.llm = new ClaudeApi();
+        break;
+      case ModelProvider.LOCAL:
+        this.llm = new LocalApi();
         break;
       default:
         this.llm = new ChatGPTApi();

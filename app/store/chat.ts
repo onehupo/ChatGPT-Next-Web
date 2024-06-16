@@ -368,6 +368,8 @@ export const useChatStore = createPersistStore(
           api = new ClientApi(ModelProvider.GeminiPro);
         } else if (identifyDefaultClaudeModel(modelConfig.model)) {
           api = new ClientApi(ModelProvider.Claude);
+        } else if (modelConfig.model === "local") {
+          api = new ClientApi(ModelProvider.LOCAL);
         } else {
           api = new ClientApi(ModelProvider.GPT);
         }
@@ -552,6 +554,8 @@ export const useChatStore = createPersistStore(
           api = new ClientApi(ModelProvider.GeminiPro);
         } else if (identifyDefaultClaudeModel(modelConfig.model)) {
           api = new ClientApi(ModelProvider.Claude);
+        } else if (modelConfig.model === "local") {
+          api = new ClientApi(ModelProvider.LOCAL);
         } else {
           api = new ClientApi(ModelProvider.GPT);
         }
